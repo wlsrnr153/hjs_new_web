@@ -37,7 +37,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4 border-b border-[#2571bd] pb-2">견적문의</h3>
             <ul className="space-y-2">
-              <li><Link href="/news/notice" className="text-gray-200 hover:text-white transition-colors">공지사항</Link></li>
+              <li><Link href="/notice" className="text-gray-200 hover:text-white transition-colors">공지사항</Link></li>
               <li><Link href="/quotation" className="text-gray-200 hover:text-white transition-colors">견적문의</Link></li>
             </ul>
           </div>

@@ -41,7 +41,7 @@ const menuItems = [
     title: '견적문의',
     link: '/quotation',
     subMenu: [
-      { title: '공지사항', link: '/news/notice' },
+      { title: '공지사항', link: '/notice' },
       { title: '견적문의', link: '/quotation' },
     ]
   }
