@@ -96,7 +96,7 @@ const InstituteIntro = () => {
           <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
             <h4 className="text-lg font-semibold text-gray-800 mb-3">사명과 가치</h4>
             <p className="text-gray-700 leading-relaxed">
-              HJS는 "폐기물에서 가치를 발견하고, 자원순환으로 미래를 창조한다"는 사명 아래,
+              HJS는 &quot;폐기물에서 가치를 발견하고, 자원순환으로 미래를 창조한다&quot;는 사명 아래,
               환경 보호와 경제적 가치 창출의
               균형을 추구합니다. 혁신, 신뢰, 책임, 협력을 핵심 가치로 삼아
               모든 구성원이 환경과 사회에 기여하는 활동을 지속하고 있습니다.
