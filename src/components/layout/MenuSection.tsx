@@ -44,16 +44,6 @@ const menuItems = [
       { title: '공지사항', link: '/news/notice' },
       { title: '견적문의', link: '/quotation' },
     ]
-  },
-  {
-    id: 5,
-    title: '채용',
-    link: '/career',
-    subMenu: [
-      { title: '채용공고', link: '/career/jobs' },
-      { title: '인재상', link: '/career/talent' },
-      { title: '복리후생', link: '/career/benefits' }
-    ]
   }
 ];
 
