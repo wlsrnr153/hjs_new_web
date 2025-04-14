@@ -47,11 +47,11 @@ export default function MainBanner() {
                 style={{ objectFit: 'cover' }}
                 priority={index === 0}
               />
-              <div className="absolute inset-0 bg-[#004b93]/60 flex flex-col justify-center px-12">
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-900/70 to-gray-700/40 flex flex-col justify-center px-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{banner.title}</h2>
-                <p className="text-lg md:text-xl text-white">{banner.description}</p>
+                <p className="text-lg md:text-xl text-gray-100">{banner.description}</p>
                 <div className="mt-6">
-                  <span className="inline-block bg-white text-[#004b93] px-4 py-2 rounded hover:bg-[#f6ab00] hover:text-white transition-colors duration-300 text-sm font-medium">
+                  <span className="inline-block bg-white text-gray-800 px-4 py-2 rounded hover:bg-[#f6ab00] hover:text-white transition-colors duration-300 text-sm font-medium">
                     자세히 보기
                   </span>
                 </div>
