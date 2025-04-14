@@ -2,20 +2,30 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #333333;
+  --primary: #004b93; /* KITECH 메인 파란색 */
+  --primary-light: #0067cd;
+  --primary-dark: #003870;
+  --secondary: #818181; /* 회색 */
+  --accent: #f6ab00; /* 강조색 (주황색) */
+  --gray-light: #f5f5f5;
+  --gray-medium: #e0e0e0;
+  --border-color: #dddddd;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff; /* 다크 모드여도 항상 라이트 모드로 표시 */
+    --foreground: #333333;
   }
 }
 
@@ -24,3 +34,66 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 기존 스타일 유지 */
+
+/* 기존 애니메이션 스타일 제거 또는 수정 */
+.submenu-transition {
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+}
+
+/* 호버 효과 */
+.menu-hover {
+  transition: all 0.2s ease-out;
+}
+
+.menu-hover:hover {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+/* KITECH 스타일 메뉴 애니메이션 */
+.menu-transition {
+  transition: all 0.2s ease-out;
+}
+
+.submenu-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.submenu-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.submenu-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.submenu-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 150ms, transform 150ms;
+}
+
+/* KITECH 스타일 커스텀 클래스 */
+.bg-kitech {
+  background-color: var(--primary);
+}
+
+.text-kitech {
+  color: var(--primary);
+}
+
+.border-kitech {
+  border-color: var(--primary);
+}
+
+.hover-kitech:hover {
+  background-color: var(--primary-light);
+  color: white;
+}
+
