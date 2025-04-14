@@ -40,12 +40,6 @@ export default function Footer() {
               <li><Link href="/news/notice" className="text-gray-200 hover:text-white transition-colors">공지사항</Link></li>
               <li><Link href="/quotation" className="text-gray-200 hover:text-white transition-colors">견적문의</Link></li>
             </ul>
-            <h3 className="text-lg font-semibold mb-4 mt-6 border-b border-[#2571bd] pb-2">채용</h3>
-            <ul className="space-y-2">
-              <li><Link href="/career/jobs" className="text-gray-200 hover:text-white transition-colors">채용공고</Link></li>
-              <li><Link href="/career/talent" className="text-gray-200 hover:text-white transition-colors">인재상</Link></li>
-              <li><Link href="/career/benefits" className="text-gray-200 hover:text-white transition-colors">복리후생</Link></li>
-            </ul>
           </div>
           
           <div>
