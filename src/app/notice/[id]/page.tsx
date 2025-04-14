@@ -18,17 +18,25 @@ interface Post {
 
 // 로컬 스토리지에서 게시물 가져오기
 const getStoredPosts = (): Post[] => {
-  if (typeof window !== 'undefined') {
-    const storedPosts = localStorage.getItem('noticePosts');
-    return storedPosts ? JSON.parse(storedPosts) : [];
+  try {
+    if (typeof window !== 'undefined') {
+      const storedPosts = localStorage.getItem('noticePosts');
+      return storedPosts ? JSON.parse(storedPosts) : [];
+    }
+  } catch (error) {
+    console.error('Failed to get posts from localStorage:', error);
   }
   return [];
 };
 
 // 로컬 스토리지에 게시물 저장
 const storePosts = (posts: Post[]) => {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('noticePosts', JSON.stringify(posts));
+  try {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('noticePosts', JSON.stringify(posts));
+    }
+  } catch (error) {
+    console.error('Failed to store posts to localStorage:', error);
   }
 };
 
@@ -39,48 +47,66 @@ export default function NoticeDetail() {
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [password, setPassword] = useState('');
   const [action, setAction] = useState<'delete' | 'edit' | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!params.id) return;
+    setIsMounted(true);
     
-    const postId = Number(params.id);
-    const posts = getStoredPosts();
-    const foundPost = posts.find(p => p.id === postId);
-    
-    if (foundPost) {
-      // 조회수 증가
-      const updatedPost = { ...foundPost, views: foundPost.views + 1 };
-      setPost(updatedPost);
-      
-      // 로컬 스토리지 업데이트
-      const updatedPosts = posts.map(p => p.id === postId ? updatedPost : p);
-      storePosts(updatedPosts);
-    } else {
-      // 게시물이 존재하지 않으면 목록으로 리다이렉트
-      router.push('/notice');
+    if (!params.id) {
+      setIsLoading(false);
+      return;
     }
-  }, [params.id, router]);
+    
+    try {
+      const postId = Number(params.id);
+      const posts = getStoredPosts();
+      const foundPost = posts.find(p => p.id === postId);
+      
+      if (foundPost) {
+        // 조회수 증가
+        const updatedPost = { ...foundPost, views: foundPost.views + 1 };
+        setPost(updatedPost);
+        
+        // 로컬 스토리지 업데이트
+        const updatedPosts = posts.map(p => p.id === postId ? updatedPost : p);
+        storePosts(updatedPosts);
+      } else if (isMounted) {
+        // 게시물이 존재하지 않으면 목록으로 리다이렉트
+        router.push('/notice');
+      }
+    } catch (error) {
+      console.error('Error loading post:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [params.id, router, isMounted]);
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!post) return;
     
-    if (post.password === password) {
-      if (action === 'delete') {
-        // 게시물 삭제
-        const posts = getStoredPosts();
-        const updatedPosts = posts.filter(p => p.id !== post.id);
-        storePosts(updatedPosts);
-        alert('게시물이 삭제되었습니다.');
-        router.push('/notice');
-      } else if (action === 'edit') {
-        // 수정 페이지로 이동 (구현 예정)
-        alert('수정 기능은 아직 구현되지 않았습니다.');
+    try {
+      if (post.password === password) {
+        if (action === 'delete') {
+          // 게시물 삭제
+          const posts = getStoredPosts();
+          const updatedPosts = posts.filter(p => p.id !== post.id);
+          storePosts(updatedPosts);
+          alert('게시물이 삭제되었습니다.');
+          router.push('/notice');
+        } else if (action === 'edit') {
+          // 수정 페이지로 이동 (구현 예정)
+          alert('수정 기능은 아직 구현되지 않았습니다.');
+        }
+        setIsPasswordModalOpen(false);
+      } else {
+        alert('비밀번호가 일치하지 않습니다.');
       }
-      setIsPasswordModalOpen(false);
-    } else {
-      alert('비밀번호가 일치하지 않습니다.');
+    } catch (error) {
+      console.error('Error processing action:', error);
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 
@@ -89,11 +115,27 @@ export default function NoticeDetail() {
     setIsPasswordModalOpen(true);
   };
 
-  if (!post) {
+  if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
           <p className="text-lg">게시물을 불러오는 중입니다...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!post) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center">
+          <p className="text-lg">게시물을 찾을 수 없습니다.</p>
+          <Link 
+            href="/notice"
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 inline-block"
+          >
+            목록으로 돌아가기
+          </Link>
         </div>
       </div>
     );
@@ -212,4 +254,4 @@ export default function NoticeDetail() {
       )}
     </div>
   );
-} 
+}

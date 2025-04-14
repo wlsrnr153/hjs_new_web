@@ -16,9 +16,13 @@ interface Post {
 
 // 로컬 스토리지에서 게시물 가져오기
 const getStoredPosts = (): Post[] => {
-  if (typeof window !== 'undefined') {
-    const storedPosts = localStorage.getItem('noticePosts');
-    return storedPosts ? JSON.parse(storedPosts) : [];
+  try {
+    if (typeof window !== 'undefined') {
+      const storedPosts = localStorage.getItem('noticePosts');
+      return storedPosts ? JSON.parse(storedPosts) : [];
+    }
+  } catch (error) {
+    console.error('Failed to get posts from localStorage:', error);
   }
   return [];
 };
@@ -27,9 +31,11 @@ const NoticeBoard = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('전체');
+  const [isMounted, setIsMounted] = useState(false);
 
   // 컴포넌트 마운트 시 데이터 로드
   useEffect(() => {
+    setIsMounted(true);
     const loadedPosts = getStoredPosts();
     setPosts(loadedPosts);
   }, []);
