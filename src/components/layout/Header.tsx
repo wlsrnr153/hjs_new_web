@@ -1,8 +1,8 @@
 "use client";
 
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import MenuSection from './MenuSection';
 
 export default function Header() {
   return (

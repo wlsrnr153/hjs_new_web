@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 // Post 타입 정의
 interface Post {
@@ -136,11 +137,11 @@ const NoticeWrite = () => {
         <nav className="text-sm text-gray-500">
           <ol className="list-none p-0 inline-flex">
             <li className="flex items-center">
-              <a href="/" className="hover:text-blue-600">홈</a>
+              <Link href="/" className="hover:text-blue-600">홈</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">
-              <a href="/notice" className="hover:text-blue-600">공지사항</a>
+              <Link href="/notice" className="hover:text-blue-600">공지사항</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">

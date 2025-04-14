@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Location = () => {
   return (
@@ -8,11 +9,11 @@ const Location = () => {
         <nav className="text-sm text-gray-500">
           <ol className="list-none p-0 inline-flex">
             <li className="flex items-center">
-              <a href="/" className="hover:text-[#004b93] transition-colors">홈</a>
+              <Link href="/" className="hover:text-blue-600">홈</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">
-              <a href="/about" className="hover:text-[#004b93] transition-colors">소개</a>
+              <Link href="/about" className="hover:text-blue-600">소개</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">

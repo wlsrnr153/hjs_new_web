@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const InstituteIntro = () => {
   return (
@@ -9,11 +10,11 @@ const InstituteIntro = () => {
         <nav className="text-sm text-gray-500">
           <ol className="list-none p-0 inline-flex">
             <li className="flex items-center">
-              <a href="/" className="hover:text-blue-600">홈</a>
+              <Link href="/" className="hover:text-blue-600">홈</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">
-              <a href="/about" className="hover:text-blue-600">소개</a>
+              <Link href="/about" className="hover:text-blue-600">소개</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">
@@ -32,10 +33,12 @@ const InstituteIntro = () => {
       <div className="flex flex-col lg:flex-row gap-8 mb-12">
         <div className="lg:w-1/2">
           <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-            <img
+            <Image
               src="/images/introduce.jpeg"
               alt="연구원 전경"
               className="object-cover w-full h-full rounded-lg border border-gray-200"
+              fill
+              priority
             />
           </div>
         </div>
@@ -259,6 +262,11 @@ const InstituteIntro = () => {
           </div>
         </div>
       </div>
+
+      <blockquote className="border-l-4 border-blue-600 pl-4 italic text-gray-700">
+        &quot;우리는 환경 문제 해결을 통해 더 나은 미래를 만들기 위해 노력하고 있습니다.&quot; 
+        <cite>- 김환경 연구원장</cite>
+      </blockquote>
     </div>
   );
 };

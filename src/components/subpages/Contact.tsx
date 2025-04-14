@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +35,6 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     setIsSubmitting(true);
     setShowResult(false);
     
@@ -68,7 +68,7 @@ const Contact = () => {
         message: '',
         privacy: false
       });
-    } catch (error) {
+    } catch {
       setSubmitResult({
         success: false,
         message: '문의 전송 중 오류가 발생했습니다. 다시 시도하거나 직접 연락해주세요.'
@@ -91,11 +91,11 @@ const Contact = () => {
         <nav className="text-sm text-gray-500">
           <ol className="list-none p-0 inline-flex">
             <li className="flex items-center">
-              <a href="/" className="hover:text-blue-600">홈</a>
+              <Link href="/" className="hover:text-blue-600">홈</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">
-              <a href="/about" className="hover:text-blue-600">소개</a>
+              <Link href="/about" className="hover:text-blue-600">소개</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">
@@ -341,7 +341,7 @@ const Contact = () => {
               ></iframe>
             </div>
             <p className="text-sm text-gray-600 mb-4">주소: 경기도 시흥시 과림동 585-2번지</p>
-            <a 
+            <Link 
               href="/about/location" 
               className="inline-flex items-center text-blue-600 hover:text-blue-800"
             >
@@ -349,7 +349,7 @@ const Contact = () => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
-            </a>
+            </Link>
           </div>
           <div className="lg:w-1/2">
             <div className="bg-blue-50 p-6 rounded-lg h-full">

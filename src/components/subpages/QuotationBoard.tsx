@@ -72,7 +72,7 @@ const QuotationBoard = () => {
         <nav className="text-sm text-gray-500">
           <ol className="list-none p-0 inline-flex">
             <li className="flex items-center">
-              <a href="/" className="hover:text-blue-600">홈</a>
+              <Link href="/" className="hover:text-blue-600">홈</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">

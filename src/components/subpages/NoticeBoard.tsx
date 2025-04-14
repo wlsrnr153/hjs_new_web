@@ -74,7 +74,7 @@ const NoticeBoard = () => {
         <nav className="text-sm text-gray-500">
           <ol className="list-none p-0 inline-flex">
             <li className="flex items-center">
-              <a href="/" className="hover:text-blue-600">홈</a>
+              <Link href="/" className="hover:text-blue-600">홈</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">
@@ -129,40 +129,46 @@ const NoticeBoard = () => {
       </div>
 
       {/* 게시글 목록 */}
-      <div className="overflow-x-auto bg-white rounded-lg shadow mb-8">
-        <table className="w-full table-auto">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">번호</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">제목</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작성자</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작성일</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">조회수</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">상태</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {posts.map((post) => (
-              <tr key={post.id} className="hover:bg-gray-50 cursor-pointer">
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{post.id}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  <Link href={`/notice/${post.id}`} className="hover:text-blue-600">
-                    {post.title}
-                  </Link>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{post.author}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{post.date}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{post.views}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm">
-                  <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${post.status === '중요' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'}`}>
-                    {post.status}
-                  </span>
-                </td>
+      {isMounted ? (
+        <div className="overflow-x-auto bg-white rounded-lg shadow mb-8">
+          <table className="w-full table-auto">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">번호</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">제목</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작성자</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작성일</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">조회수</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">상태</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {posts.map((post) => (
+                <tr key={post.id} className="hover:bg-gray-50 cursor-pointer">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{post.id}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <Link href={`/notice/${post.id}`} className="hover:text-blue-600">
+                      {post.title}
+                    </Link>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{post.author}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{post.date}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{post.views}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${post.status === '중요' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'}`}>
+                      {post.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="text-center py-10">
+          <p>데이터를 불러오는 중입니다...</p>
+        </div>
+      )}
 
       {/* 페이지네이션 */}
       <div className="flex justify-center mb-8">

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 
 const RfidManagement = () => {
@@ -11,11 +12,11 @@ const RfidManagement = () => {
         <nav className="text-sm text-gray-500">
           <ol className="list-none p-0 inline-flex">
             <li className="flex items-center">
-              <a href="/" className="hover:text-blue-600">홈</a>
+              <Link href="/" className="hover:text-blue-600">홈</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">
-              <a href="/research" className="hover:text-blue-600">사업분야</a>
+              <Link href="/research" className="hover:text-blue-600">사업분야</Link>
               <span className="mx-2">/</span>
             </li>
             <li className="flex items-center">
@@ -120,13 +121,13 @@ const RfidManagement = () => {
           RFID 물품관리 시스템 도입에 대해 궁금하신 점이 있으시다면 언제든 문의해주세요.
           전문가가 상세한 설명과 함께 맞춤형 솔루션을 제안해드립니다.
         </p>
-        <div className="flex justify-end">
-          <a 
+        <div className="text-center mt-12">
+          <Link 
             href="/quotation/write" 
-            className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors"
           >
-            문의하기
-          </a>
+            견적문의하기
+          </Link>
         </div>
       </div>
     </div>

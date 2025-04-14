@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { banners } from '@/data/banners';
 import { useRouter } from 'next/navigation';
+import { banners } from '@/data/banners';
 
 export default function MainBanner() {
   const [currentBanner, setCurrentBanner] = useState(0);
