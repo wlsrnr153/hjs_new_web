@@ -21,11 +21,27 @@ export default function NewsSection() {
   const defaultPosts = [
     {
       id: 1,
-      title: '공지사항을 작성해주세요.',
+      title: '홈페이지 리뉴얼 작업 중입니다..',
       date: new Date().toISOString().split('T')[0],
       author: '관리자',
       views: 0,
       status: '일반'
+    },
+    {
+      id: 2,
+      title: '공지사항, 견적문의, 프로젝트 탭이 작동하지 않을 수 있습니다.',
+      date: new Date().toISOString().split('T')[0],
+      author: '관리자',
+      views: 0,
+      status: '공지'
+    },
+    {
+      id: 3,
+      title: '카카오톡 채팅 및 통화를 통해 문의 상담 부탁드립니다.',
+      date: new Date().toISOString().split('T')[0],
+      author: '관리자',
+      views: 0,
+      status: '공지'
     }
   ];
 

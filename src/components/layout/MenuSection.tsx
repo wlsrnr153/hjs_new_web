@@ -8,10 +8,10 @@ const menuItems = [
   {
     id: 1,
     title: '소개',
-    link: '/about',
+    link: '/about/intro',
     subMenu: [
       { title: 'CEO 인사말', link: '/about/ceo' },
-      { title: '연구원 소개', link: '/about/intro' },
+      { title: '회사 소개', link: '/about/intro' },
       { title: '찾아오시는 길', link: '/about/location' },
       { title: '연락처', link: '/about/contact' }
     ]
@@ -19,7 +19,7 @@ const menuItems = [
   {
     id: 2,
     title: '사업분야',
-    link: '/research',
+    link: '/research/tech',
     subMenu: [
       { title: 'RFID 물품관리', link: '/research/tech' },
       { title: 'RFID 소모품', link: '/research/results' },

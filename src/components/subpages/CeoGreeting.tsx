@@ -43,15 +43,15 @@ const CeoGreeting = () => {
         </div>
         <div className="lg:w-2/3">
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-800">홍길동</h2>
-            <p className="text-lg text-gray-600">한국기술연구원 원장</p>
+            <h2 className="text-2xl font-bold text-gray-800">엄성희</h2>
+            <p className="text-lg text-gray-600">HJS 대표</p>
             <div className="prose max-w-none">
               <p className="text-gray-700 leading-relaxed">
-                안녕하세요. 한국기술연구원 홍길동입니다.
+                안녕하세요. HJS 대표 엄성희입니다.
               </p>
               <p className="text-gray-700 leading-relaxed">
-                한국기술연구원은 1989년 설립된 이래, 국가 산업기술 혁신을 선도해왔습니다. 
-                우리 연구원은 첨단 기술 연구와 산업화를 통해 국가 경쟁력 강화에 기여하고 있으며, 
+                HJS는 2005년 설립된 이래, 국가 재활용 사업 혁신을 선도해왔습니다. 
+                우리 회사는 첨단 기술 연구와 산업화를 통해 국가 경쟁력 강화에 기여하고 있으며, 
                 미래 기술 혁신을 선도하기 위해 끊임없이 노력하고 있습니다.
               </p>
               <p className="text-gray-700 leading-relaxed">
@@ -75,7 +75,7 @@ const CeoGreeting = () => {
 
       {/* 비전 섹션 */}
       <div className="bg-blue-50 p-8 rounded-lg shadow-md">
-        <h3 className="text-2xl font-bold text-blue-800 mb-8 text-center border-b border-blue-200 pb-4">연구원 비전</h3>
+        <h3 className="text-2xl font-bold text-blue-800 mb-8 text-center border-b border-blue-200 pb-4">회사 비전</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 text-center relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-1 bg-blue-600"></div>
