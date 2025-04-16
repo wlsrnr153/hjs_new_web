@@ -8,14 +8,23 @@ import { banners } from '@/data/banners';
 // 카카오 SDK 타입 선언
 declare global {
   interface Window {
-    Kakao: any;
+    Kakao: {
+      init: (key: string) => void;
+      isInitialized: () => boolean;
+      Channel: {
+        chat: (options: { channelId: string }) => void;
+      };
+    };
   }
 }
 
 // 카카오 SDK 초기화 함수
 const initializeKakaoSDK = () => {
   if (typeof window !== 'undefined' && window.Kakao && !window.Kakao.isInitialized()) {
-    window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
+    const kakaoAppKey = process.env.NEXT_PUBLIC_KAKAO_APP_KEY;
+    if (kakaoAppKey) {
+      window.Kakao.init(kakaoAppKey);
+    }
   }
 };
 
