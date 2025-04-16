@@ -50,28 +50,10 @@ const menuItems = [
 const MenuSection = () => {
   const [activeMenus, setActiveMenus] = useState<{ [key: string]: boolean }>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileActiveMenus, setMobileActiveMenus] = useState<{ [key: string]: boolean }>({});
+  const [mobileActiveMenus, setMobileActiveMenus] = useState<string[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // 화면 크기에 따른 모바일 상태 감지
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    
-    // 초기 체크
-    checkIsMobile();
-    
-    // 리사이즈 이벤트 리스너
-    window.addEventListener('resize', checkIsMobile);
-    
-    // 클린업
-    return () => {
-      window.removeEventListener('resize', checkIsMobile);
-    };
-  }, []);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleMouseEnter = (menuId: string) => {
     // 모바일 메뉴가 열려있지 않을 때만 마우스 이벤트 처리
@@ -109,10 +91,13 @@ const MenuSection = () => {
   const toggleSubMenu = (menuId: string) => {
     // 모바일 메뉴가 열려있을 때만 서브메뉴 토글 처리
     if (mobileMenuOpen) {
-      setMobileActiveMenus(prev => ({
-        ...prev,
-        [menuId]: !prev[menuId]
-      }));
+      setMobileActiveMenus(prev => {
+        if (prev.includes(menuId)) {
+          return prev.filter((id) => id !== menuId);
+        } else {
+          return [...prev, menuId];
+        }
+      });
     }
   };
 
@@ -295,7 +280,7 @@ const MenuSection = () => {
                           onClick={() => toggleSubMenu(String(item.id))}
                         >
                           <svg
-                            className={`w-4 h-4 transition-transform ${mobileActiveMenus[String(item.id)] ? 'transform rotate-180' : ''}`}
+                            className={`w-4 h-4 transition-transform ${mobileActiveMenus.includes(String(item.id)) ? 'transform rotate-180' : ''}`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -308,7 +293,7 @@ const MenuSection = () => {
                     
                     {/* 모바일 서브메뉴 */}
                     {item.subMenu && item.subMenu.length > 0 && (
-                      <div className={`overflow-hidden transition-all duration-300 ${mobileActiveMenus[String(item.id)] ? 'max-h-96' : 'max-h-0'}`}>
+                      <div className={`overflow-hidden transition-all duration-300 ${mobileActiveMenus.includes(String(item.id)) ? 'max-h-96' : 'max-h-0'}`}>
                         <ul className="bg-[#f7f7f7]">
                           {item.subMenu.map((subItem) => (
                             <li key={subItem.title}>
