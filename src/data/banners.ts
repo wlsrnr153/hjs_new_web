@@ -12,7 +12,7 @@ export const banners: Banner[] = [
     title: '카카오톡 채팅을 통해 문의하세요.',
     description: '카카오톡 채팅을 통해 문의하세요.',
     image: '/images/kakaotalk.jpg',
-    link: 'kakaotalk://chat'
+    link: 'http://pf.kakao.com/_vxbCnxj/chat'
   },
   {
     id: 2,

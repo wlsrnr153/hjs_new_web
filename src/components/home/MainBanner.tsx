@@ -5,9 +5,28 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { banners } from '@/data/banners';
 
+// 카카오 SDK 타입 선언
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
+// 카카오 SDK 초기화 함수
+const initializeKakaoSDK = () => {
+  if (typeof window !== 'undefined' && window.Kakao && !window.Kakao.isInitialized()) {
+    window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY);
+  }
+};
+
 export default function MainBanner() {
   const [currentBanner, setCurrentBanner] = useState(0);
   const router = useRouter();
+
+  // 카카오 SDK 초기화
+  useEffect(() => {
+    initializeKakaoSDK();
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -18,8 +37,16 @@ export default function MainBanner() {
   }, []);
 
   const handleBannerClick = (banner: typeof banners[0]) => {
-    if (banner.link.startsWith('kakaotalk://')) {
-      window.location.href = banner.link;
+    if (banner.link === 'http://pf.kakao.com/_vxbCnxj/chat') {
+      // 카카오톡 채팅 기능 호출
+      if (typeof window !== 'undefined' && window.Kakao) {
+        window.Kakao.Channel.chat({
+          channelId: '_vxbCnxj', // 카카오톡 채널 ID
+        });
+      } else {
+        // 카카오 SDK가 로드되지 않은 경우 직접 링크로 이동
+        window.location.href = banner.link;
+      }
     } else {
       router.push(banner.link);
     }
