@@ -53,7 +53,6 @@ const MenuSection = () => {
   const [mobileActiveMenus, setMobileActiveMenus] = useState<{ [key: string]: boolean }>({});
   const menuRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleMouseEnter = (menuId: string) => {
     // 모바일 메뉴가 열려있지 않을 때만 마우스 이벤트 처리
