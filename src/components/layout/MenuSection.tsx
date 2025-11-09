@@ -29,7 +29,7 @@ const menuItems = [
   {
     id: 3,
     title: '프로젝트',
-    link: '/projects',
+    link: 'https://survey.hjs4393.com',
     subMenu: [
       { title: '진행 프로젝트', link: '/projects/current' },
       { title: '완료 프로젝트', link: '/projects/completed' },
